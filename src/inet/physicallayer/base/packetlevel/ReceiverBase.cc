@@ -79,7 +79,7 @@ const IReceptionDecision *ReceiverBase::computeReceptionDecision(const IListenin
 const IReceptionResult *ReceiverBase::computeReceptionResult(const IListening *listening, const IReception *reception, const IInterference *interference, const ISnir *snir, const std::vector<const IReceptionDecision *> *decisions) const
 {
     auto packet = reception->getTransmission()->getPacket()->dup();
-    auto snirInd = packet->ensureTag<SnirInd>();
+    auto snirInd = packet->_addTagIfAbsent<SnirInd>();
     snirInd->setMinimumSnir(snir->getMin());
     snirInd->setMaximumSnir(snir->getMax());
     bool isReceptionSuccessful = true;
