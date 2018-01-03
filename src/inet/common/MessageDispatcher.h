@@ -20,6 +20,8 @@
 
 #include "inet/common/IInterfaceRegistrationListener.h"
 #include "inet/common/IProtocolRegistrationListener.h"
+#include "inet/common/packet/Command.h"
+#include "inet/common/packet/Packet.h"
 
 namespace inet {
 
@@ -44,15 +46,20 @@ class INET_API MessageDispatcher : public cSimpleModule, public IProtocolRegistr
     protected:
         virtual void initialize() override;
         virtual void arrived(cMessage *message, cGate *inGate, simtime_t t) override;
-        virtual cGate *handleUpperLayerPacket(cMessage *message, cGate *inGate);
-        virtual cGate *handleLowerLayerPacket(cMessage *message, cGate *inGate);
-        virtual cGate *handleUpperLayerCommand(cMessage *message, cGate *inGate);
-        virtual cGate *handleLowerLayerCommand(cMessage *message, cGate *inGate);
+        virtual cGate *handleUpperLayerPacket(Packet *packet, cGate *inGate);
+        virtual cGate *handleLowerLayerPacket(Packet *packet, cGate *inGate);
+        virtual cGate *handleUpperLayerCommand(Command *command, cGate *inGate);
+        virtual cGate *handleLowerLayerCommand(Command *command, cGate *inGate);
 
-        virtual int computeSocketReqSocketId(cMessage *message);
-        virtual int computeSocketIndSocketId(cMessage *message);
-        virtual int computeInterfaceId(cMessage *message);
-        virtual const Protocol *computeProtocol(cMessage *message);
+        virtual int computeSocketReqSocketId(Packet *packet);
+        virtual int computeSocketIndSocketId(Packet *packet);
+        virtual int computeInterfaceId(Packet *packet);
+        virtual const Protocol *computeProtocol(Packet *packet);
+
+        virtual int computeSocketReqSocketId(Command *command);
+        virtual int computeSocketIndSocketId(Command *command);
+        virtual int computeInterfaceId(Command *command);
+        virtual const Protocol *computeProtocol(Command *command);
 
     public:
         MessageDispatcher();
