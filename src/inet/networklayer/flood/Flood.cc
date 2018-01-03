@@ -322,9 +322,9 @@ void Flood::encapsulate(Packet *appPkt)
  */
 void Flood::setDownControlInfo(cMessage *const pMsg, const MacAddress& pDestAddr)
 {
-    pMsg->_addTagIfAbsent<MacAddressReq>()->setDestAddress(pDestAddr);
-    pMsg->_addTagIfAbsent<PacketProtocolTag>()->setProtocol(&Protocol::gnp);
-    pMsg->_addTagIfAbsent<DispatchProtocolInd>()->setProtocol(&Protocol::gnp);
+//    pMsg->_addTagIfAbsent<MacAddressReq>()->setDestAddress(pDestAddr);
+//    pMsg->_addTagIfAbsent<PacketProtocolTag>()->setProtocol(&Protocol::gnp);
+//    pMsg->_addTagIfAbsent<DispatchProtocolInd>()->setProtocol(&Protocol::gnp);
 }
 
 } // namespace inet

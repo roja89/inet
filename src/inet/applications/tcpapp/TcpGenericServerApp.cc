@@ -84,7 +84,7 @@ void TcpGenericServerApp::sendBack(cMessage *msg)
         EV_INFO << "sending \"" << msg->getName() << "\" to TCP\n";
     }
 
-    msg->_addTagIfAbsent<DispatchProtocolReq>()->setProtocol(&Protocol::tcp);
+//    msg->_addTagIfAbsent<DispatchProtocolReq>()->setProtocol(&Protocol::tcp);
     send(msg, "socketOut");
 }
 
@@ -96,12 +96,12 @@ void TcpGenericServerApp::handleMessage(cMessage *msg)
     else if (msg->getKind() == TCP_I_PEER_CLOSED) {
         // we'll close too, but only after there's surely no message
         // pending to be sent back in this connection
-        int connId = msg->_getTag<SocketInd>()->getSocketId();
+//        int connId = msg->_getTag<SocketInd>()->getSocketId();
         delete msg;
         cMessage *outMsg = new cMessage("close");
         outMsg->setName("close");
         outMsg->setKind(TCP_C_CLOSE);
-        outMsg->_addTagIfAbsent<SocketReq>()->setSocketId(connId);
+//        outMsg->_addTagIfAbsent<SocketReq>()->setSocketId(connId);
         sendOrSchedule(outMsg, delay + maxMsgDelay);
     }
     else if (msg->getKind() == TCP_I_DATA || msg->getKind() == TCP_I_URGENT_DATA) {
@@ -143,7 +143,7 @@ void TcpGenericServerApp::handleMessage(cMessage *msg)
             cMessage *outMsg = new cMessage("close");
             outMsg->setKind(TCP_C_CLOSE);
             TcpCommand *cmd = new TcpCommand();
-            outMsg->_addTagIfAbsent<SocketReq>()->setSocketId(connId);
+//            outMsg->_addTagIfAbsent<SocketReq>()->setSocketId(connId);
             outMsg->setControlInfo(cmd);
             sendOrSchedule(outMsg, delay + maxMsgDelay);
         }

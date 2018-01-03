@@ -265,7 +265,7 @@ void Ppp::handleMessage(cMessage *msg)
         notifDetails.setPacket(PK(msg));
         emit(NF_PP_RX_END, &notifDetails);
 
-        msg->_addTagIfAbsent<PacketProtocolTag>()->setProtocol(&Protocol::ppp);
+//        msg->_addTagIfAbsent<PacketProtocolTag>()->setProtocol(&Protocol::ppp);
         emit(packetReceivedFromLowerSignal, msg);
 
         // check for bit errors
@@ -367,7 +367,7 @@ Packet *Ppp::encapsulate(cPacket *msg)
 {
     auto packet = check_and_cast<Packet*>(msg);
     auto pppHeader = makeShared<PppHeader>();
-    pppHeader->setProtocol(ProtocolGroup::pppprotocol.getProtocolNumber(msg->_getTag<PacketProtocolTag>()->getProtocol()));
+//    pppHeader->setProtocol(ProtocolGroup::pppprotocol.getProtocolNumber(msg->_getTag<PacketProtocolTag>()->getProtocol()));
     packet->insertHeader(pppHeader);
     auto pppTrailer = makeShared<PppTrailer>();
     packet->insertTrailer(pppTrailer);

@@ -581,7 +581,7 @@ void NetPerfMeter::successfullyEstablishedConnection(cMessage*          msg,
          IncomingSocketTCP->setOutputGate(gate("tcpOut"));
       }
 
-      ConnectionID = msg->_getTag<SocketInd>()->getSocketId();
+      //ConnectionID = msg->_getTag<SocketInd>()->getSocketId();
       sendTCPQueueRequest(QueueSize);   // Limit the send queue as given.
    }
    else if(TransportProtocol == SCTP) {

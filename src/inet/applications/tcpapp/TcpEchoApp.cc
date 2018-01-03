@@ -59,8 +59,8 @@ void TcpEchoApp::sendDown(cMessage *msg)
         emit(sentPkSignal, pk);
     }
 
-    msg->_addTagIfAbsent<DispatchProtocolReq>()->setProtocol(&Protocol::tcp);
-    msg->_getTag<SocketReq>();
+//    msg->_addTagIfAbsent<DispatchProtocolReq>()->setProtocol(&Protocol::tcp);
+//    msg->_getTag<SocketReq>();
     send(msg, "socketOut");
 }
 

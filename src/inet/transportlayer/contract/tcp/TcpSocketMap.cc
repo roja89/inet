@@ -24,7 +24,7 @@ namespace inet {
 
 TcpSocket *TcpSocketMap::findSocketFor(cMessage *msg)
 {
-    int connId = msg->_getTag<SocketInd>()->getSocketId();
+    int connId = 0; // msg->_getTag<SocketInd>()->getSocketId();
     auto i = socketMap.find(connId);
     ASSERT(i == socketMap.end() || i->first == i->second->getConnectionId());
     return (i == socketMap.end()) ? nullptr : i->second;

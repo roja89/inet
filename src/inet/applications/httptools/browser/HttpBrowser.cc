@@ -66,8 +66,8 @@ void HttpBrowser::handleMessage(cMessage *msg)
             EV_DEBUG << "No control info for the message" << endl;
         }
         else {
-            int connId = msg->_getTag<SocketInd>()->getSocketId();
-            EV_DEBUG << "Connection ID: " << connId << endl;
+//            int connId = msg->_getTag<SocketInd>()->getSocketId();
+//            EV_DEBUG << "Connection ID: " << connId << endl;
         }
 
         // Locate the socket for the incoming message. One should definitely exist.

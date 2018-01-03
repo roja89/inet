@@ -214,7 +214,7 @@ void Udp::refreshDisplay() const
 
 void Udp::processCommandFromApp(cMessage *msg)
 {
-    int socketId = msg->_getTag<SocketReq>()->getSocketId();
+    int socketId = 0; // msg->_getTag<SocketReq>()->getSocketId();
     switch (msg->getKind()) {
         case UDP_C_BIND: {
             UdpBindCommand *ctrl = check_and_cast<UdpBindCommand *>(msg->getControlInfo());
@@ -839,11 +839,11 @@ void Udp::sendUpErrorIndication(SockDesc *sd, const L3Address& localAddr, ushort
     UdpErrorIndication *udpCtrl = new UdpErrorIndication();
     notifyMsg->setControlInfo(udpCtrl);
     //FIXME notifyMsg->_addTagIfAbsent<InterfaceInd>()->setInterfaceId(interfaceId);
-    notifyMsg->_addTagIfAbsent<SocketInd>()->setSocketId(sd->sockId);
-    notifyMsg->_addTagIfAbsent<L3AddressInd>()->setSrcAddress(localAddr);
-    notifyMsg->_addTagIfAbsent<L3AddressInd>()->setDestAddress(remoteAddr);
-    notifyMsg->_addTagIfAbsent<L4PortInd>()->setSrcPort(sd->localPort);
-    notifyMsg->_addTagIfAbsent<L4PortInd>()->setDestPort(remotePort);
+//    notifyMsg->_addTagIfAbsent<SocketInd>()->setSocketId(sd->sockId);
+//    notifyMsg->_addTagIfAbsent<L3AddressInd>()->setSrcAddress(localAddr);
+//    notifyMsg->_addTagIfAbsent<L3AddressInd>()->setDestAddress(remoteAddr);
+//    notifyMsg->_addTagIfAbsent<L4PortInd>()->setSrcPort(sd->localPort);
+//    notifyMsg->_addTagIfAbsent<L4PortInd>()->setDestPort(remotePort);
 
     send(notifyMsg, "appOut");
 }

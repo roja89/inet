@@ -55,8 +55,8 @@ void UdpSocket::sendToUDP(cMessage *msg)
         EV_TRACE << "  control info: (" << ctrl->getClassName() << ")" << ctrl->getFullName();
     EV_TRACE << endl;
 
-    msg->_addTagIfAbsent<DispatchProtocolReq>()->setProtocol(&Protocol::udp);
-    msg->_addTagIfAbsent<SocketReq>()->setSocketId(sockId);
+//    msg->_addTagIfAbsent<DispatchProtocolReq>()->setProtocol(&Protocol::udp);
+//    msg->_addTagIfAbsent<SocketReq>()->setSocketId(sockId);
     check_and_cast<cSimpleModule *>(gateToUdp->getOwnerModule())->send(msg, gateToUdp);
 }
 
@@ -296,8 +296,8 @@ void UdpSocket::setMulticastSourceFilter(int interfaceId, const L3Address& multi
 
 bool UdpSocket::belongsToSocket(cMessage *msg)
 {
-    int socketId = msg->_getTag<SocketReq>()->getSocketId();
-    return dynamic_cast<UdpControlInfo *>(msg->getControlInfo()) && socketId == sockId;
+//    int socketId = msg->_getTag<SocketReq>()->getSocketId();
+//    return dynamic_cast<UdpControlInfo *>(msg->getControlInfo()) && socketId == sockId;
 }
 
 bool UdpSocket::belongsToAnyUDPSocket(cMessage *msg)
